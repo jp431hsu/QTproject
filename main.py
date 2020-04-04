@@ -47,7 +47,7 @@ class MainWindow(QObject):
         volume_slider.setMinimum(1)
         volume_slider.setMaximum(100)
         volume_slider.setValue(25)
-        volume_slider.valueChanged.connect(self.volume_change)
+        volume_slider.valueChanged.connect(self.volume)
 
         #show window to user
         self.window.show()
@@ -67,6 +67,10 @@ class MainWindow(QObject):
 
     def volume_slider_clicked(self):
         self.music_player.setVolume(50)
+
+    def volume(self):
+        print(self.window.volume_slider.value())
+        self.music_player.setVolume(self.window.volume_slider.value())
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
