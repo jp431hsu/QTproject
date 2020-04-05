@@ -39,7 +39,6 @@ class MainWindow(QObject):
         stop_button.clicked.connect(self.stop_button_clicked)
 
         volume_slider = self.window.findChild(QSlider, 'volume_slider')
-#        volume_slider.clicked.connect(self.volume_slider_clicked)
 
         volume_slider.setTickInterval(10)
         volume_slider.setSingleStep(1)
