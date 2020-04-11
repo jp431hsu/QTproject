@@ -1,6 +1,6 @@
-import sys
+import sys, os
 from PySide2.QtUiTools import QUiLoader #allows us to import .ui files
-from PySide2.QtWidgets import QApplication, QLineEdit, QPushButton, QSlider, QFileDialog, QAction
+from PySide2.QtWidgets import QApplication, QLineEdit, QPushButton, QSlider, QFileDialog, QAction, QLabel
 from PySide2.QtCore import QFile, QObject, QUrl
 from PySide2.QtMultimedia import QMediaPlayer
 
@@ -54,6 +54,9 @@ class MainWindow(QObject):
     def open_action_triggered(self):
         file_name = QFileDialog.getOpenFileName(self.window)
         self.music_player.setMedia(QUrl.fromLocalFile(file_name[0]))
+        fileTitle = self.window.findChild(QLabel, 'theTitle')
+        displayTitle = os.path.basename(str(file_name[0]))
+        fileTitle.setText(displayTitle)
 
     def quit_action_triggered(self):
         self.window.close()
